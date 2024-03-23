@@ -1,0 +1,8 @@
+{
+  "express": {
+    "port": 3010
+  },
+  "webServer": {
+    "url": "http://localhost:3011"
+  }
+}
