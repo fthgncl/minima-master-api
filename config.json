@@ -4,5 +4,13 @@
   },
   "webServer": {
     "url": "http://localhost:3011"
+  },
+  "uploadConfig": {
+    "maxFileSizeMB": 5,
+    "allowedFileTypes" : [
+      {"extension":"csv","typename":"csv","mime":"text/csv"},
+      {"extension":"xls","typename":"xls","mime":"application/vnd.ms-excel"},
+      {"extension":"xlsx","typename":"xlsx","mime":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}
+    ]
   }
 }
