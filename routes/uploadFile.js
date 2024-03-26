@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const validateFile = require('../helper/validateFile');
+const readExcelFile = require('../helper/readExcelFile');
 const fs = require('node:fs')
 const { v4: uuidv4 } = require('uuid');
 
@@ -42,6 +43,7 @@ router.post('/', (req, res) => {
 
         // Dosya yükleme işlemi başarılıysa, bu noktaya gelinir
         const file = req.file;
+        readExcelFile(file.path);
         res.status(200).json({
             ...validateFile(file)
         });
