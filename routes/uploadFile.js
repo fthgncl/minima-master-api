@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const validateFile = require('../helper/validateFile');
 const fs = require('node:fs')
+const { v4: uuidv4 } = require('uuid');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -13,7 +14,8 @@ const storage = multer.diskStorage({
         cb(null, uploadPath);
     },
     filename: function (req, file, cb) {
-        cb(null, `${Date.now()}-${file.originalname}`)
+        const ext = file.originalname.split('.').pop();
+        cb(null, `${uuidv4()}.${ext}`);
     }
 });
 
