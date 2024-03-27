@@ -3,37 +3,37 @@ const fs = require('node:fs')
 const {uploadConfig} = require('../config.json');
 
 function validateFile(file){
-
+    return new Promise((resolve, reject) => {
         // file size control
         if ( !checkSize(file) ){
-            return {
+            return reject({
                 status: false,
                 message: 'File size exceeds the maximum allowed size'
-            };
+            });
         }
 
         // extension control
         const matchedFileType = checkExtension(file)
         if ( !matchedFileType ){
-            return {
+            return reject({
                 status: false,
                 message: 'Unsupported file extension'
-            };
+            });
         }
 
         // File type - Mime type control
         if(checkFileType(file,matchedFileType) ){
-            return {
+            return reject({
                 status: false,
                 message: 'The file type information did not match completely'
-            };
+            });
         }
 
-        return {
+        resolve({
             status: true,
             message: 'The file is valid'
-        };
-
+        });
+    });
 }
 
 function checkSize(file){

@@ -1,23 +1,34 @@
 const ExcelJS = require('exceljs');
 
 function readExcelFile(filePath) {
-    const workbook = new ExcelJS.Workbook();
+    return new Promise((resolve, reject) => {
+        const workbook = new ExcelJS.Workbook();
 
-    workbook.xlsx.readFile(filePath)
-        .then(function() {
-            // İlk çalışma sayfasını seçin
-            const worksheet = workbook.getWorksheet(1);
+        workbook.xlsx.readFile(filePath)
+            .then(() => {
 
-            // Tüm satırları döngüye alarak verilere erişin
-            worksheet.eachRow(function(row, rowNumber) {
-                // Satırdaki hücreleri döngüye alarak her bir hücreyi yazdırın
-                row.eachCell(function(cell, colNumber) {
-                    console.log('Satır ' + rowNumber + ', Sütun ' + colNumber + ' : ' + cell.value);
-                });
-            });
-        })
-        .catch(function(err) {
-            console.error('Hata:', err);
-        });
+                const worksheet = workbook.getWorksheet(1);
+                const {columnCount} = worksheet;
+                const data = [];
+
+                for (let column = 1; column - 1 < columnCount; column++) {
+                    const columnData = worksheet.getColumn(column).values.filter(value => value !== undefined);
+                    if (columnData.length > 0) {
+                        data.push(columnData);
+                    }
+                }
+
+                resolve({
+                    status : true,
+                    message: 'Excel file was read successfully',
+                    data
+                })
+
+            })
+            .catch(error => reject({
+                status : false,
+                message: `An error occurred while reading the Excel file: ${error.message}`,
+            }));
+    });
 }
 module.exports = readExcelFile;

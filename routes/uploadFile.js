@@ -43,10 +43,15 @@ router.post('/', (req, res) => {
 
         // Dosya yükleme işlemi başarılıysa, bu noktaya gelinir
         const file = req.file;
-        readExcelFile(file.path);
-        res.status(200).json({
-            ...validateFile(file)
-        });
+
+        await validateFile(file)
+            // .then(result => res.status(200).json(result) ) TODO: Bu yapıyı kontrol et
+            .catch(error => res.status(200).json(error) )
+
+        readExcelFile(file.path)
+            .then(result => res.status(200).json(result) )
+            .catch(error => res.status(200).json(error) )
+
 
     });
 });
