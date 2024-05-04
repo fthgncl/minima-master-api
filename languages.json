@@ -10,7 +10,16 @@
     "excelReadSuccess": "Excel dosyası başarıyla okundu.",
     "excelReadError": "Excel dosyasını okurken bir hata oluştu: ${error.message}",
     "fileUploadError": "Dosya yüklenirken bir hata oluştu.",
-    "unexpectedError": "Beklenmeyen bir hata oluştu."
+    "unexpectedError": "Beklenmeyen bir hata oluştu.",
+    "invalidPeriodInfo": "Periyot bilgisi eksik veya sayı formatında değil.",
+    "invalidStartTimeInfo": "Başlangıç zamanı bilgisi eksik veya sayı formatında değil.",
+    "invalidTimeColumnInfo": "Zaman sütunu bilgisi eksik veya dizi formatında değil.",
+    "timeColumnValuesNumeric": "Zaman sütunundaki tüm değerler sayı formatında olmalı.",
+    "brightnessLuminanceConflict": "Parlaklık ve akı değerleri birlikte tanımlanamaz.",
+    "brightnessColumnValuesNumeric": "Parlaklık sütunundaki tüm değerler sayı formatında olmalı.",
+    "luminanceColumnValuesNumeric": "Akı sütunundaki tüm değerler sayı formatında olmalı.",
+    "timeLuminanceCountMismatch": "Zaman ve akı veri adeti eşit değil.",
+    "timeBrightnessCountMismatch": "Zaman ve parlalık veri adeti eşit değil."
   },
   {
     "code": "EN",
@@ -23,6 +32,15 @@
     "excelReadSuccess": "Excel file was read successfully.",
     "excelReadError": "An error occurred while reading the Excel file: ${error.message}",
     "fileUploadError": "An error occurred while uploading the file.",
-    "unexpectedError": "An unexpected error occurred."
+    "unexpectedError": "An unexpected error occurred.",
+    "invalidPeriodInfo": "Period information is missing or not in number format.",
+    "invalidStartTimeInfo": "Start time information is missing or not in number format.",
+    "invalidTimeColumnInfo": "Time column information is missing or not in array format.",
+    "timeColumnValuesNumeric": "All values in the time column must be in numeric format.",
+    "brightnessLuminanceConflict": "Brightness and luminance values cannot be defined together.",
+    "brightnessColumnValuesNumeric": "All values in the brightness column must be in numeric format.",
+    "luminanceColumnValuesNumeric": "All values in the luminance column must be in numeric format.",
+    "timeLuminanceCountMismatch": "The count of time and luminance data is not equal.",
+    "timeBrightnessCountMismatch": "The count of time and brightness data is not equal."
   }
 ]

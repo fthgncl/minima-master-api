@@ -1,69 +1,68 @@
 const express = require('express');
+const { getLangDataOnRequest } = require("../helper/languageManager");
 const router = express.Router();
 
-
 router.post('/', (req, res) => {
-    const {period, startTime, timeArray, MagnitudeArray, FluxArray} = req.body;
-
+    const langData = getLangDataOnRequest(req);
     const data = convertDataToNumberObject(req.body);
-    const errors = verifyData(data);
+    const errors = verifyData(data, langData);
 
-    if ( errors.length > 0 ){
+    if (errors.length > 0) {
         res.status(400).json({
-            status:'error',
-            errors:errors
+            status: 'error',
+            errors: errors
         });
         return;
     }
     res.status(200).json({
-        status:'succes'
+        status: 'success'
     });
-
 });
-function verifyData(data){
+
+function verifyData(data, langData) {
     const errors = [];
-    const {period, startTime, timeArray, MagnitudeArray, FluxArray} = data;
+    const { period, startTime, timeArray, MagnitudeArray, FluxArray } = data;
 
-    if ( !isNumber(period) )
-        errors.push('Periyot bilgisi eksik veya sayı formatında değil.');
+    if (!isNumber(period))
+        errors.push(langData.invalidPeriodInfo);
 
-    if ( !isNumber(startTime) )
-        errors.push('Başlangıç zamanı bilgisi eksik veya sayı formatında değil.');
+    if (!isNumber(startTime))
+        errors.push(langData.invalidStartTimeInfo);
 
-    if ( timeArray === undefined )
-        errors.push('Zaman sütunu bilgisi eksik veya dizi formatında değil.');
+    if (timeArray === undefined)
+        errors.push(langData.invalidTimeColumnInfo);
 
-    if ( timeArray === false )
-        errors.push('Zaman sütunundaki tüm değerler sayı formatında olmalı.');
+    if (timeArray === false)
+        errors.push(langData.timeColumnValuesNumeric);
 
-    if ( MagnitudeArray !== undefined && FluxArray !== undefined )
-        errors.push('Parlaklık ve akı değerleri birlikte tanımlanamaz.');
+    if (MagnitudeArray !== undefined && FluxArray !== undefined)
+        errors.push(langData.brightnessLuminanceConflict);
 
-    if ( MagnitudeArray === false )
-        errors.push('Parlaklık sütunundaki tüm değerler sayı formatında olmalı.');
+    if (MagnitudeArray === false)
+        errors.push(langData.brightnessColumnValuesNumeric);
 
-    if ( FluxArray === false )
-        errors.push('Akı sütunundaki tüm değerler sayı formatında olmalı.');
+    if (FluxArray === false)
+        errors.push(langData.luminanceColumnValuesNumeric);
 
-    if ( !!timeArray ){
-        if ( !!FluxArray && timeArray.length !== FluxArray.length )
-            errors.push('Zaman ve akı veri adeti eşit değil.');
+    if (!!timeArray) {
+        if (!!FluxArray && timeArray.length !== FluxArray.length)
+            errors.push(langData.timeLuminanceCountMismatch);
 
-        if ( !!MagnitudeArray && timeArray.length !== MagnitudeArray.length )
-            errors.push('Zaman ve parlalık veri adeti eşit değil.');
+        if (!!MagnitudeArray && timeArray.length !== MagnitudeArray.length)
+            errors.push(langData.timeBrightnessCountMismatch);
     }
 
     return errors;
 }
 
-function convertDataToNumberObject(reqBody){
-    const {period, startTime, timeArray, MagnitudeArray, FluxArray} = reqBody;
+function convertDataToNumberObject(reqBody) {
+    const { period, startTime, timeArray, MagnitudeArray, FluxArray } = reqBody;
     return {
-        period : convertToNumber(period),
-        startTime : convertToNumber(startTime),
-        timeArray : convertArrayValuesToNumbers(timeArray),
-        MagnitudeArray : convertArrayValuesToNumbers(MagnitudeArray),
-        FluxArray : convertArrayValuesToNumbers(FluxArray)
+        period: convertToNumber(period),
+        startTime: convertToNumber(startTime),
+        timeArray: convertArrayValuesToNumbers(timeArray),
+        MagnitudeArray: convertArrayValuesToNumbers(MagnitudeArray),
+        FluxArray: convertArrayValuesToNumbers(FluxArray)
     }
 }
 
@@ -90,7 +89,6 @@ function convertToNumber(input) {
         return null;
     }
 }
-
 
 function convertArrayValuesToNumbers(array) {
     if (!Array.isArray(array))
