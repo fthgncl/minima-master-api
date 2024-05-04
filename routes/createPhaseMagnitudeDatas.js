@@ -13,8 +13,8 @@ router.post('/', (req, res) => {
             status:'error',
             errors:errors
         });
+        return;
     }
-
     res.status(200).json({
         status:'succes'
     });
