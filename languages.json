@@ -19,7 +19,9 @@
     "brightnessColumnValuesNumeric": "Parlaklık sütunundaki tüm değerler sayı formatında olmalı.",
     "luminanceColumnValuesNumeric": "Akı sütunundaki tüm değerler sayı formatında olmalı.",
     "timeLuminanceCountMismatch": "Zaman ve akı veri adeti eşit değil.",
-    "timeBrightnessCountMismatch": "Zaman ve parlalık veri adeti eşit değil."
+    "timeBrightnessCountMismatch": "Zaman ve parlalık veri adeti eşit değil.",
+    "processing": "İşleniyor",
+    "phaseBrightnessDataCreated": "Evre ve parlaklık verileri oluşturuldu"
   },
   {
     "code": "EN",
@@ -41,6 +43,8 @@
     "brightnessColumnValuesNumeric": "All values in the brightness column must be in numeric format.",
     "luminanceColumnValuesNumeric": "All values in the luminance column must be in numeric format.",
     "timeLuminanceCountMismatch": "The count of time and luminance data is not equal.",
-    "timeBrightnessCountMismatch": "The count of time and brightness data is not equal."
+    "timeBrightnessCountMismatch": "The count of time and brightness data is not equal.",
+    "processing": "Processing",
+    "phaseBrightnessDataCreated": "Phase and brightness data created"
   }
 ]

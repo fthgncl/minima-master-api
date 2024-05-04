@@ -1,11 +1,18 @@
 const express = require('express');
-const { getLangDataOnRequest } = require("../helper/languageManager");
 const router = express.Router();
+const { getLangDataOnRequest } = require("../helper/languageManager");
+const fluxToMagnitude = require('../mathCalculations/fluxToMagnitude');
+const calculatePhase = require('../mathCalculations/calculatePhase');
 
 router.post('/', (req, res) => {
     const langData = getLangDataOnRequest(req);
     const data = convertDataToNumberObject(req.body);
     const errors = verifyData(data, langData);
+
+    if ( errors.length === 0 ){ // No Error
+        analyzeProcess(data)
+    }
+    console.log(data);
 
     if (errors.length > 0) {
         res.status(400).json({
@@ -15,9 +22,38 @@ router.post('/', (req, res) => {
         return;
     }
     res.status(200).json({
-        status: 'success'
+        status: 'success',
+        message: langData.phaseBrightnessDataCreated,
+        result: {
+            MagnitudeArray: data.MagnitudeArray,
+            phaseArray: data.phaseArray
+        }
     });
 });
+
+function analyzeProcess(data){
+    if ( data.MagnitudeArray === undefined )
+        calculateMagnitudes(data)
+
+    calculatePhases(data);
+
+
+}
+function calculatePhases(data){
+    data.phaseArray = [];
+    for ( let i = 0 ; i < data.timeArray.length ; i++ ){
+        console.log(i);
+        const time = data.timeArray[i];
+        data.phaseArray.push(calculatePhase(time,data.startTime,data.period))
+    }
+}
+function calculateMagnitudes(data){
+    data.magnitudeArray = data.FluxArray.map(flux => fluxToMagnitude(flux));
+}
+
+
+
+
 
 function verifyData(data, langData) {
     const errors = [];
