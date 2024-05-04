@@ -12,7 +12,6 @@ router.post('/', (req, res) => {
     if ( errors.length === 0 ){ // No Error
         analyzeProcess(data)
     }
-    console.log(data);
 
     if (errors.length > 0) {
         res.status(400).json({
@@ -61,6 +60,8 @@ function verifyData(data, langData) {
 
     if (!isNumber(period))
         errors.push(langData.invalidPeriodInfo);
+    else if ( period === 0 )
+        errors.push(langData.periodCannotBeZero);
 
     if (!isNumber(startTime))
         errors.push(langData.invalidStartTimeInfo);
