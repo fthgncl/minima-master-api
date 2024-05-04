@@ -1,11 +1,28 @@
 [
   {
     "code": "TR",
-    "name": "Türkçe"
-
+    "name": "Türkçe",
+    "notFound": "Bulunamadı",
+    "sizeExceedsMax": "Dosya boyutu izin verilen maksimum boyutu aşıyor.",
+    "unsupportedExtension": "Desteklenmeyen dosya uzantısı.",
+    "typeMismatch": "Dosya türü bilgisi tam olarak eşleşmedi.",
+    "validFile": "Dosya doğrulandı.",
+    "excelReadSuccess": "Excel dosyası başarıyla okundu.",
+    "excelReadError": "Excel dosyasını okurken bir hata oluştu: ${error.message}",
+    "fileUploadError": "Dosya yüklenirken bir hata oluştu.",
+    "unexpectedError": "Beklenmeyen bir hata oluştu."
   },
   {
     "code": "EN",
-    "name": "English"
+    "name": "English",
+    "notFound": "Not Found",
+    "sizeExceedsMax": "File size exceeds the maximum allowed size.",
+    "unsupportedExtension": "Unsupported file extension.",
+    "typeMismatch": "The file type information did not match completely.",
+    "validFile": "The file is verified.",
+    "excelReadSuccess": "Excel file was read successfully.",
+    "excelReadError": "An error occurred while reading the Excel file: ${error.message}",
+    "fileUploadError": "An error occurred while uploading the file.",
+    "unexpectedError": "An unexpected error occurred."
   }
 ]

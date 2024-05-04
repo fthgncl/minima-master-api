@@ -1,6 +1,8 @@
 const ExcelJS = require('exceljs');
+const {getLangData} = require('./languageManager');
 
-function readExcelFile(filePath) {
+function readExcelFile(filePath,langData) {
+
     return new Promise((resolve, reject) => {
         const workbook = new ExcelJS.Workbook();
 
@@ -20,14 +22,14 @@ function readExcelFile(filePath) {
 
                 resolve({
                     status : true,
-                    message: 'Excel file was read successfully',
+                    message: langData.excelReadSuccess,
                     data
                 })
 
             })
             .catch(error => reject({
                 status : false,
-                message: `An error occurred while reading the Excel file: ${error.message}`,
+                message: langData.excelReadError,
             }));
     });
 }

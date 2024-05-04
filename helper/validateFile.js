@@ -1,14 +1,16 @@
 const magicBytes = require('magic-bytes.js')
 const fs = require('node:fs')
 const {uploadConfig} = require('../config.json');
+const {getLangData} = require('../helper/languageManager');
 
-function validateFile(file){
+function validateFile(file,langData){
+
     return new Promise((resolve, reject) => {
         // file size control
         if ( !checkSize(file) ){
             return reject({
                 status: false,
-                message: 'File size exceeds the maximum allowed size'
+                message: langData.sizeExceedsMax
             });
         }
 
@@ -17,7 +19,7 @@ function validateFile(file){
         if ( !matchedFileType ){
             return reject({
                 status: false,
-                message: 'Unsupported file extension'
+                message: langData.unsupportedExtension
             });
         }
 
@@ -25,13 +27,13 @@ function validateFile(file){
         if(checkFileType(file,matchedFileType) ){
             return reject({
                 status: false,
-                message: 'The file type information did not match completely'
+                message: langData.typeMismatch
             });
         }
 
         resolve({
             status: true,
-            message: 'The file is valid'
+            message: langData.validFile
         });
     });
 }

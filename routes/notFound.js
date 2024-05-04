@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const {getLangDataOnRequest} = require('../helper/languageManager');
 
 router.all('*', (req, res) => {
-    res.status(404).send('Not Found');
+    const langData = getLangDataOnRequest(req);
+    res.status(404).send(langData.notFound);
 });
 
 module.exports = router;

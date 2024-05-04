@@ -8,5 +8,10 @@ function getLangData(langCode) {
     }
     return lang;
 }
+function getLangDataOnRequest(req) {
+    const acceptedLanguages = req.headers['accept-language'];
+    const preferredLanguage = acceptedLanguages.split(',')[0].trim();
+    return getLangData(preferredLanguage);
+}
 
-module.exports = getLangData;
+module.exports = { getLangData, getLangDataOnRequest };

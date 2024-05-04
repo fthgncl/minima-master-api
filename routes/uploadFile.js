@@ -5,6 +5,7 @@ const validateFile = require('../helper/validateFile');
 const readExcelFile = require('../helper/readExcelFile');
 const fs = require('node:fs')
 const { v4: uuidv4 } = require('uuid');
+const {getLangDataOnRequest} = require('../helper/languageManager');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -24,31 +25,31 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 router.post('/', (req, res) => {
-
     upload.single('file')(req, res, async (err) =>{
+        const langData = getLangDataOnRequest(req);
 
         if (err instanceof multer.MulterError) {
-            console.error('Dosya yükleme hatası:', err);
+            console.error(langData.fileUploadError, err);
             return res.status(500).json({
-                message: 'Dosya yüklenirken bir hata oluştu'
+                message: langData.fileUploadError
             });
         }
 
         if (err) {
-            console.error('Beklenmeyen bir hata oluştu:', err);
+            console.error(langData.unexpectedError, err);
             return res.status(500).json({
-                message: 'Beklenmeyen bir hata oluştu'
+                message: langData.unexpectedError
             });
         }
 
         // Dosya yükleme işlemi başarılıysa, bu noktaya gelinir
         const file = req.file;
 
-        await validateFile(file)
+        await validateFile(file,langData)
             // .then(result => res.status(200).json(result) ) TODO: Bu yapıyı kontrol et
             .catch(error => res.status(200).json(error) )
 
-        readExcelFile(file.path)
+        readExcelFile(file.path,langData)
             .then(result => res.status(200).json(result) )
             .catch(error => res.status(200).json(error) )
 
