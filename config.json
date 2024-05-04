@@ -1,4 +1,5 @@
 {
+  "systemLanguage" : "TR",
   "express": {
     "port": 3010
   },
