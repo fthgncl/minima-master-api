@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
     res.status(200).json({
         status: 'success',
         message: langData.phaseBrightnessDataCreated,
-        result: {
+        responseData: {
             MagnitudeArray: data.MagnitudeArray,
             phaseArray: data.phaseArray
         }
@@ -41,7 +41,6 @@ function analyzeProcess(data){
 function calculatePhases(data){
     data.phaseArray = [];
     for ( let i = 0 ; i < data.timeArray.length ; i++ ){
-        console.log(i);
         const time = data.timeArray[i];
         data.phaseArray.push(calculatePhase(time,data.startTime,data.period))
     }
