@@ -11,7 +11,7 @@
     "excelReadError": "Excel dosyasını okurken bir hata oluştu: ${error.message}",
     "fileUploadError": "Dosya yüklenirken bir hata oluştu.",
     "unexpectedError": "Beklenmeyen bir hata oluştu.",
-    "invalidPeriodInfo": "Periyot bilgisi eksik veya sayı formatında değil.",
+    "invalidPeriodInfo": "Dönem bilgisi eksik veya sayı formatında değil.",
     "invalidStartTimeInfo": "Başlangıç zamanı bilgisi eksik veya sayı formatında değil.",
     "invalidTimeColumnInfo": "Zaman sütunu bilgisi eksik veya dizi formatında değil.",
     "timeColumnValuesNumeric": "Zaman sütunundaki tüm değerler sayı formatında olmalı.",
@@ -21,7 +21,9 @@
     "timeLuminanceCountMismatch": "Zaman ve akı veri adeti eşit değil.",
     "timeBrightnessCountMismatch": "Zaman ve parlalık veri adeti eşit değil.",
     "processing": "İşleniyor",
-    "phaseBrightnessDataCreated": "Evre ve parlaklık verileri oluşturuldu"
+    "phaseBrightnessDataCreated": "Evre ve parlaklık verileri oluşturuldu",
+    "okay": "Tamam",
+    "periodCannotBeZero": "Dönem sıfır olamaz"
   },
   {
     "code": "EN",
@@ -45,6 +47,8 @@
     "timeLuminanceCountMismatch": "The count of time and luminance data is not equal.",
     "timeBrightnessCountMismatch": "The count of time and brightness data is not equal.",
     "processing": "Processing",
-    "phaseBrightnessDataCreated": "Phase and brightness data created"
+    "phaseBrightnessDataCreated": "Phase and brightness data created",
+    "okay": "Okay",
+    "periodCannotBeZero": "Period cannot be zero"
   }
 ]
