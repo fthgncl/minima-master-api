@@ -23,7 +23,8 @@
     "processing": "İşleniyor",
     "phaseBrightnessDataCreated": "Evre ve parlaklık verileri oluşturuldu",
     "okay": "Tamam",
-    "periodCannotBeZero": "Dönem sıfır olamaz"
+    "periodCannotBeZero": "Dönem sıfır olamaz",
+    "methodAndPointsRequired": "Yöntem ve nokta alanları zorunludur."
   },
   {
     "code": "EN",
@@ -49,6 +50,7 @@
     "processing": "Processing",
     "phaseBrightnessDataCreated": "Phase and brightness data created",
     "okay": "Okay",
-    "periodCannotBeZero": "Period cannot be zero"
+    "periodCannotBeZero": "Period cannot be zero",
+    "methodAndPointsRequired": "Method and points fields are required."
   }
 ]

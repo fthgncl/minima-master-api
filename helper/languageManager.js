@@ -10,6 +10,9 @@ function getLangData(langCode) {
 }
 function getLangDataOnRequest(req) {
     const acceptedLanguages = req.headers['accept-language'];
+    if (!acceptedLanguages)
+        return getLangData(systemLanguage)
+
     const preferredLanguage = acceptedLanguages.split(',')[0].trim();
     return getLangData(preferredLanguage);
 }
