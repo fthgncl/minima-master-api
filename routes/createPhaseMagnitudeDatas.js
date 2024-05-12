@@ -25,7 +25,8 @@ router.post('/', (req, res) => {
         message: langData.phaseBrightnessDataCreated,
         responseData: {
             MagnitudeArray: data.MagnitudeArray,
-            phaseArray: data.phaseArray
+            phaseArray: data.phaseArray,
+            timeArray: data.timeArray
         }
     });
 });
