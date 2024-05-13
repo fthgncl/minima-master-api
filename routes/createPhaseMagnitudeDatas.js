@@ -24,7 +24,7 @@ router.post('/', (req, res) => {
         status: 'success',
         message: langData.phaseBrightnessDataCreated,
         responseData: {
-            MagnitudeArray: data.MagnitudeArray,
+            magnitudeArray: data.magnitudeArray,
             phaseArray: data.phaseArray,
             timeArray: data.timeArray
         }
@@ -32,7 +32,7 @@ router.post('/', (req, res) => {
 });
 
 function analyzeProcess(data){
-    if ( data.MagnitudeArray === undefined )
+    if ( data.magnitudeArray === undefined )
         calculateMagnitudes(data)
 
     calculatePhases(data);
@@ -47,7 +47,7 @@ function calculatePhases(data){
     }
 }
 function calculateMagnitudes(data){
-    data.magnitudeArray = data.FluxArray.map(flux => fluxToMagnitude(flux));
+    data.magnitudeArray = data.fluxArray.map(flux => fluxToMagnitude(flux));
 }
 
 
@@ -56,7 +56,7 @@ function calculateMagnitudes(data){
 
 function verifyData(data, langData) {
     const errors = [];
-    const { period, startTime, timeArray, MagnitudeArray, FluxArray } = data;
+    const { period, startTime, timeArray, magnitudeArray, fluxArray } = data;
 
     if (!isNumber(period))
         errors.push(langData.invalidPeriodInfo);
@@ -72,20 +72,20 @@ function verifyData(data, langData) {
     if (timeArray === false)
         errors.push(langData.timeColumnValuesNumeric);
 
-    if (MagnitudeArray !== undefined && FluxArray !== undefined)
+    if (magnitudeArray !== undefined && fluxArray !== undefined)
         errors.push(langData.brightnessLuminanceConflict);
 
-    if (MagnitudeArray === false)
+    if (magnitudeArray === false)
         errors.push(langData.brightnessColumnValuesNumeric);
 
-    if (FluxArray === false)
+    if (fluxArray === false)
         errors.push(langData.luminanceColumnValuesNumeric);
 
     if (!!timeArray) {
-        if (!!FluxArray && timeArray.length !== FluxArray.length)
+        if (!!fluxArray && timeArray.length !== fluxArray.length)
             errors.push(langData.timeLuminanceCountMismatch);
 
-        if (!!MagnitudeArray && timeArray.length !== MagnitudeArray.length)
+        if (!!magnitudeArray && timeArray.length !== magnitudeArray.length)
             errors.push(langData.timeBrightnessCountMismatch);
     }
 
@@ -93,13 +93,13 @@ function verifyData(data, langData) {
 }
 
 function convertDataToNumberObject(reqBody) {
-    const { period, startTime, timeArray, MagnitudeArray, FluxArray } = reqBody;
+    const { period, startTime, timeArray, magnitudeArray, fluxArray } = reqBody;
     return {
         period: convertToNumber(period),
         startTime: convertToNumber(startTime),
         timeArray: convertArrayValuesToNumbers(timeArray),
-        MagnitudeArray: convertArrayValuesToNumbers(MagnitudeArray),
-        FluxArray: convertArrayValuesToNumbers(FluxArray)
+        magnitudeArray: convertArrayValuesToNumbers(magnitudeArray),
+        fluxArray: convertArrayValuesToNumbers(fluxArray)
     }
 }
 

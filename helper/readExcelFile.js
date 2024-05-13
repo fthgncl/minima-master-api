@@ -1,5 +1,4 @@
 const ExcelJS = require('exceljs');
-const {getLangData} = require('./languageManager');
 
 function readExcelFile(filePath,langData) {
 

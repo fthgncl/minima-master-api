@@ -24,7 +24,13 @@
     "phaseBrightnessDataCreated": "Evre ve parlaklık verileri oluşturuldu",
     "okay": "Tamam",
     "periodCannotBeZero": "Dönem sıfır olamaz",
-    "methodAndPointsRequired": "Yöntem ve nokta alanları zorunludur."
+    "missingParamsError": "Method, period, phaseRange ve dataSet parametreleri zorunludur.",
+    "invalidPeriodFormatError": "Period parametresi sayı formatında olmalıdır.",
+    "invalidPeriodValueError": "Periyod parametresi sıfırdan büyük olmalıdır.",
+    "invalidMethodError": "Geçersiz metod.",
+    "invalidDataSetFormatError": "dataSet veri formatı hatalı. Her öğe, 'time' , 'magnitude' ve 'phase' anahtarlarını içeren bir nesne olmalıdır.",
+    "dataSetNotArrayError": "dataSet bir dizi olmalıdır.",
+    "invalidPhaseRangeFormatError": "phaseRange parametresi 2 hücreli bir dizi olarak belirtilmelidir. Örneğin: [0.45, 0.55]"
   },
   {
     "code": "EN",
@@ -51,6 +57,12 @@
     "phaseBrightnessDataCreated": "Phase and brightness data created",
     "okay": "Okay",
     "periodCannotBeZero": "Period cannot be zero",
-    "methodAndPointsRequired": "Method and points fields are required."
+    "missingParamsError": "Method, period, phaseRange and dataSet parameters are mandatory.",
+    "invalidPeriodFormatError": "Period parameter must be in number format.",
+    "invalidPeriodValueError": "Period parameter must be greater than zero.",
+    "invalidMethodError": "Invalid method parameter.",
+    "invalidDataSetFormatError": "Invalid dataSet format. Each item should be an object containing 'time' , 'magnitude' and 'phase' keys.",
+    "dataSetNotArrayError": "dataSet must be an array.",
+    "invalidPhaseRangeFormatError": "phaseRange parameter must be specified as a 2-cell array. For example: [0.45, 0.55]"
   }
 ]
