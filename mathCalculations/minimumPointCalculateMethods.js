@@ -5,7 +5,7 @@ function initializeDataProcessing(period, dataSet, phaseRange,method){
     const result = [];
     const timeDifference = calculateTimeDifference(period, dataSet, phaseRange);
     const groupDataByPeriod = createGroupedDataByPeriod(dataSet,timeDifference);
-    console.log(groupDataByPeriod);
+
     groupDataByPeriod.forEach( group => {
 
         const points = group.map( data => {
@@ -80,9 +80,17 @@ function findClosestPhase(dataSet, targetPhase, isGreaterThan) {
 
 function parabolaFitMethod(points) {
 
+    let minXNorm = points[0].x;
+    for (let i = 1; i < points.length; i++) {
+        if (points[i].x < minXNorm) {
+            minXNorm = points[i].x;
+        }
+    }
+
     let X = 0, Y = 0, XY = 0, X2 = 0, X2Y = 0, X3 = 0, X4 = 0, Y2 = 0;
     const N = points.length;
     points.forEach(point => {
+        point.x -= minXNorm;
         X = new Calc(X).sum(point.x).finish();
         Y = new Calc(Y).sum(point.y).finish();
         XY = new Calc(XY).sum(new Calc(point.x).multiply(point.y).finish()).finish();
@@ -100,12 +108,14 @@ function parabolaFitMethod(points) {
 
     let totalFunctionalDifferance = 0;
     points.forEach(point => {
-        const fX = a * Math.pow(point.x, 2) + b * point.x + c; // Ax² + Bx + C
+        // fX = Ax² + Bx + C
+        const fX = new Calc(a).multiply(Math.pow(point.x, 2)).sum(new Calc(b).multiply(point.x).finish()).sum(c).finish()
         totalFunctionalDifferance = new Calc(totalFunctionalDifferance).sum(Math.pow(new Calc(fX).minus(point.y).finish(), 2)).finish();
     });
-    const rms = Math.sqrt(totalFunctionalDifferance / N);
+    const rms = Math.sqrt(new Calc(totalFunctionalDifferance).divide(N).finish());
+    const minimumTime = new Calc(-b).divide(2).divide(a).sum(minXNorm).finish();
 
-    return { a,b,c,rms,n:N };
+    return { points, minimumTime,rms,pointCount:N };
 }
 
 
