@@ -115,7 +115,7 @@ function parabolaFitMethod(points) {
     const rms = Math.sqrt(new Calc(totalFunctionalDifferance).divide(N).finish());
     const minimumTime = new Calc(-b).divide(2).divide(a).sum(minXNorm).finish();
 
-    return { points, minimumTime,rms,pointCount:N };
+    return { minXNorm, points, minimumTime, rms, pointCount:N };
 }
 
 

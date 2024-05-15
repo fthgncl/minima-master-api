@@ -54,7 +54,8 @@ router.post('/', (req, res) => {
     return res.status(200).json({
             status : 'success',
             method,
-            data : initializeDataProcessing(periodAsNumber,dataSet,phaseRange,method)
+            data : initializeDataProcessing(periodAsNumber,dataSet,phaseRange,method),
+            message: langData.minimumTimeCalculationCompleted
     });
 
 });
