@@ -81,9 +81,13 @@ function findClosestPhase(dataSet, targetPhase, isGreaterThan) {
 function parabolaFitMethod(points) {
 
     let minXNorm = points[0].x;
+    let maxX = points[0].x
     for (let i = 1; i < points.length; i++) {
         if (points[i].x < minXNorm) {
             minXNorm = points[i].x;
+        }
+        if (points[i].x > maxX) {
+            maxX = points[i].x;
         }
     }
 
@@ -113,9 +117,15 @@ function parabolaFitMethod(points) {
         totalFunctionalDifferance = new Calc(totalFunctionalDifferance).sum(Math.pow(new Calc(fX).minus(point.y).finish(), 2)).finish();
     });
     const rms = Math.sqrt(new Calc(totalFunctionalDifferance).divide(N).finish());
-    const minimumTime = new Calc(-b).divide(2).divide(a).sum(minXNorm).finish();
+    let minimumTime = new Calc(-b).divide(2).divide(a).sum(minXNorm).finish();
 
-    return { minXNorm, points, minimumTime, rms, pointCount:N };
+    const isMinimumTimeTrueRange = minimumTime > minXNorm && minimumTime < maxX;
+
+    if ( !minimumTime ){
+        minimumTime = 0;
+    }
+
+    return { minXNorm, points, minimumTime, isMinimumTimeTrueRange, rms, pointCount:N };
 }
 
 
