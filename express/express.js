@@ -39,7 +39,7 @@ app.use((err, req, res) => {
 
 const server = http.createServer(app);
 
-server.listen(port);
+server.listen(process.env.PORT || port);
 server.on('error', onError);
 server.on('listening', onListening);
 
