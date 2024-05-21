@@ -9,13 +9,17 @@ const logger = require('morgan');   // Bu paket gelen isteklerin konsoldan çık
 
 const indexRouter = require('./routesControl');
 const notFoundRouter = require('../routes/notFound');
-const {port} = require('../config.json').express;
+const configs = require('../config.json');
+const {port} = configs.express;
+const {maxFileSizeMB} = configs.uploadConfig;
 
 const app = express();
 app.use(cors());
 app.set('port', port);
 
 app.use(logger('dev'));
+app.use(express.json({ limit: `${maxFileSizeMB}mb` }));
+app.use(express.urlencoded({ extended: true, limit: `${maxFileSizeMB}mb` }));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
