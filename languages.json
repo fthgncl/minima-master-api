@@ -31,7 +31,9 @@
     "invalidDataSetFormatError": "dataSet veri formatı hatalı. Her öğe, 'time' , 'magnitude' ve 'phase' anahtarlarını içeren bir nesne olmalıdır.",
     "dataSetNotArrayError": "dataSet bir dizi olmalıdır.",
     "invalidPhaseRangeFormatError": "phaseRange parametresi 2 hücreli bir dizi olarak belirtilmelidir. Örneğin: [0.45, 0.55]",
-    "minimumTimeCalculationCompleted": "Yıldızın minimum zaman hesaplaması başarıyla tamamlandı"
+    "minimumTimeCalculationCompleted": "Yıldızın minimum zaman hesaplaması başarıyla tamamlandı",
+    "missingParamsError2": "Period, startTime ve timeArray parametreleri zorunludur.",
+    "timeArrayNotArrayError": "timeArray bir dizi olmalıdır."
   },
   {
     "code": "EN",
@@ -65,6 +67,8 @@
     "invalidDataSetFormatError": "Invalid dataSet format. Each item should be an object containing 'time' , 'magnitude' and 'phase' keys.",
     "dataSetNotArrayError": "dataSet must be an array.",
     "invalidPhaseRangeFormatError": "phaseRange parameter must be specified as a 2-cell array. For example: [0.45, 0.55]",
-    "minimumTimeCalculationCompleted": "The minimum time calculation for the star has been successfully completed"
+    "minimumTimeCalculationCompleted": "The minimum time calculation for the star has been successfully completed",
+    "missingParamsError2": "Period, startTime and timeArray parameters are mandatory.",
+    "timeArrayNotArrayError": "timeArray must be an array."
   }
 ]
