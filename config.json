@@ -3,9 +3,6 @@
   "express": {
     "port": 3010
   },
-  "webServer": {
-    "url": "http://localhost:3011"
-  },
   "uploadConfig": {
     "maxFileSizeMB": 5,
     "allowedFileTypes" : [
