@@ -1,7 +1,7 @@
 {
   "systemLanguage" : "TR",
   "express": {
-    "port": 3010
+    "port": 443
   },
   "uploadConfig": {
     "maxFileSizeMB": 5,
