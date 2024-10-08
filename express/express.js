@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const debug = require('debug')('smart-home-api:server');
-const http = require('http');
+const https = require('https');
 const createError = require('http-errors');
 const express = require('express');
 const cors = require('cors');
@@ -41,7 +41,7 @@ app.use((err, req, res) => {
 });
 
 
-const server = http.createServer(app);
+const server = https.createServer(app);
 
 server.listen(process.env.PORT || port);
 server.on('error', onError);
