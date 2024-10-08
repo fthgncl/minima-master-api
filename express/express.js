@@ -40,5 +40,6 @@ app.use((err, req, res) => {
 
 // HTTP modülünü kaldırıyoruz, doğrudan Express'in listen fonksiyonunu kullanıyoruz
 app.listen(process.env.PORT || port, () => {
+    console.log(`Listening on port ${port}`);
     debug(`Listening on port ${port}`);
 });
